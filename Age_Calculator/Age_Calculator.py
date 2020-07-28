@@ -36,11 +36,6 @@ def calculate_age():
     answer_label.grid_forget()
     
     # conditions that slighly alter the math or answer 
-    if 0 < int(month_entry.get()) < 12:
-        answer_label.grid_forget()
-        answer_label = Label(bottom_frame,
-                        text='Your month should be between 1 and 12 and your day number should fit within the month')
-        answer_label.config(font=('Courier', 10))
 
     if day_answer < 0:
         answer_label.grid_forget()
