@@ -1,13 +1,16 @@
+# imports the nessicary modules 
 from tkinter import *
 from PIL import ImageTk, Image
 from datetime import datetime
 import calendar
 
+# sets up the basic window 
 root = Tk()
 root.title('Age Calculator')
 photo = PhotoImage(file='Age Icon.png')
 root.iconphoto(False, photo)
 
+# defines labels so the screen can clear when the button is pressed
 global answer_label
 global bottom_frame
 
@@ -15,7 +18,7 @@ bottom_frame = Label(root)
 answer_label = Label(bottom_frame)
 
 
-
+# the command for the calculate button
 def calculate_age():
     global bottom_frame
     global answer_label
@@ -24,11 +27,15 @@ def calculate_age():
     current = datetime.now()
     current_year = current.year
     current_month = current.month
+    # math to get your current age 
+    
     year_answer = current_year - birth.year - ((current_month, current.day) < (birth.month, birth.day))
     month_answer = int(current_month) - birth.month
     day_answer = current.day - birth.day - ((current_month, current.day) < (birth.month, birth.day))
     month_end = calendar.monthrange(int(year_entry.get()), int(month_entry.get()))
     answer_label.grid_forget()
+    
+    # conditions that slighly alter the math or answer 
     if 0 < int(month_entry.get()) < 12:
         answer_label.grid_forget()
         answer_label = Label(bottom_frame,
@@ -65,6 +72,7 @@ def calculate_age():
         answer_label.grid(row=9, column=1)
 
 
+# labels widgets
 main_img = ImageTk.PhotoImage(Image.open('Family_silhouette.png'))
 main_label = Label(root, image=main_img)
 title_label = Label(root, text='Age Calculator')
@@ -81,6 +89,7 @@ day_entry = Entry(bottom_frame)
 calc_button = Button(bottom_frame, text='Calculate Age', bg='red', padx=15, pady=10, command=calculate_age)
 filler = Label(bottom_frame, text='')
 
+# puts widgets on screen
 main_label.grid(row=0, column=0, columnspan=1)
 title_label.grid(row=1, column=0)
 bottom_frame.grid(row=2, column=0)
